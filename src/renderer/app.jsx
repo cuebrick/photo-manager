@@ -11,12 +11,13 @@ import NotFound from "./NotFound";
 const routing = (
 	<BrowserRouter>
 		<Switch>
-			<Route component={Main} />
-			<Route path="settings" component={Settings} />
-			<Route path="desktop" component={Desktop} />
+			<Route path="/main" component={Main} />
+			<Route path="/settings" component={Settings} />
+			<Route path="/desktop" component={Desktop} />
 			<Route component={NotFound} />
 		</Switch>
 	</BrowserRouter>
 );
 
 render(routing, document.getElementById('app'));
+console.log(__dirname, '-------------');
