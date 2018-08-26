@@ -5,13 +5,16 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Main from './Main';
 import Settings from './Settings';
 import Desktop from "./Desktop";
+import NotFound from "./NotFound";
+
 
 const routing = (
 	<BrowserRouter>
 		<Switch>
+			<Route component={Main} />
 			<Route path="settings" component={Settings} />
 			<Route path="desktop" component={Desktop} />
-			<Route component={Main} />
+			<Route component={NotFound} />
 		</Switch>
 	</BrowserRouter>
 );
