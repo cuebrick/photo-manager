@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { MemoryRouter, Route, Switch } from 'react-router-dom';
 
 import Main from './Main';
 import Settings from './Settings';
@@ -9,15 +9,14 @@ import NotFound from "./NotFound";
 
 
 const routing = (
-	<BrowserRouter>
+	<MemoryRouter>
 		<Switch>
-			<Route path="/main" component={Main} />
 			<Route path="/settings" component={Settings} />
 			<Route path="/desktop" component={Desktop} />
+			<Route component={Main} />
 			<Route component={NotFound} />
 		</Switch>
-	</BrowserRouter>
+	</MemoryRouter>
 );
 
 render(routing, document.getElementById('app'));
-console.log(__dirname, '-------------');
