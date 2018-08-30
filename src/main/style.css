@@ -17,14 +17,68 @@ a, a:link{
 a:hover, a:active{
 	color: #3fa4cc;
 }
+div, ul, ol, p{
+	box-sizing: border-box;
+}
+ul, ol{
+	list-style-type: none;
+}
 
 .wrapper{
 
 }
+
 nav{
-	width: 200px;
+	width: 0;
 	height: 100vh;
-	background-color: #000;
+	overflow: hidden;
+	transition: width 0.4s;
+}
+nav.active{
+	width: 200px;
+}
+nav > .menu-icon{
+	width: 30px;
+	height: 22px;
 	position: absolute;
-	left: 0;
+	top: 20px;
+	left: 20px;
+}
+nav > .menu-icon > .menu-bar,
+nav > .menu-icon > .menu-bar:before,
+nav > .menu-icon > .menu-bar:after{
+	position: absolute;
+	top: 10px;
+	width: 30px;
+	height: 2px;
+	content: '';
+	display: block;
+	background-color: #fff;
+	transition: all 0.2s;
+}
+nav > .menu-icon > .menu-bar:before{
+	top: -10px;
+}
+nav > .menu-icon > .menu-bar:after{
+	top: 10px;
+}
+nav > .menu-icon.active > .menu-bar{
+	background-color: transparent;
+}
+nav > .menu-icon.active > .menu-bar:before{
+	transform: rotate(45deg);
+	top: 0;
+}
+nav > .menu-icon.active > .menu-bar:after{
+	transform: rotate(-45deg);
+	top: 0;
+}
+
+
+nav > .menu{
+	width: 200px;
+	height: 100%;
+	background-color: #000;
+	padding-top: 50px;
+	padding-left: 20px;
 }
