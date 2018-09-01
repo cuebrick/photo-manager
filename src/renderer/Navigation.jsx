@@ -16,11 +16,11 @@ export default class Navigation extends React.Component{
 	render(){
 		let cssShow = (this.state.isShow) ? ' active' : ''
 		return(
-			<nav className={cssShow}>
+			<nav>
 				<div className={"menu-icon" + cssShow} onClick={this.menuIconClicked}>
 					<div className="menu-bar"></div>
 				</div>
-				<ul className="menu">
+				<ul className={"menu" + cssShow}>
 					<li><Link to="/desktop">Desktop</Link></li>
 					<li><Link to="/settings">Settings</Link></li>
 				</ul>
