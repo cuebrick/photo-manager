@@ -97,7 +97,12 @@ nav > .menu-icon.active > .menu-bar:after{
 
 .main-splash{
 	width: 400px;
-	height: 200px;
+	height: 400px;
 	background-color: #3fa4cc;
-	margin: 100px auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -200px;
+	margin-left: -200px;
+	z-index: 9999;
 }
