@@ -1,13 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default class Main extends React.Component{
+	constructor(props){
+		super(props);
+		this.clickHandler = this.clickHandler.bind(this);
+		this.state = {
+			isClicked : false
+		}
+	}
+	clickHandler(){
+		this.setState({isClicked: true});
+	}
 	render(){
 		return(
 			<div className="container">
-				<div className="main-splash">
-					<img src="./.tmp/images/splash-logo.png"/>
-				</div>
+				{
+					this.state.isClicked === false &&
+					<div className="main-splash" onClick={this.clickHandler}>
+						<img src="./.tmp/images/splash-logo.png"/>
+					</div>
+				}
 			</div>
 		)
 	}
