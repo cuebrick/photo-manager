@@ -1,8 +1,9 @@
 body{
-	background-color: #333;
+	background-color: #232a38;
 	color: #bbb;
 	font-size: 16px;
 	line-height: 1em;
+	font-family: sans-serif;
 }
 
 body, p, h1, h2, h3, h4, h5, h6, ul, ol{
@@ -36,17 +37,16 @@ ul, ol{
 
 nav{
 	float: left;
-	width: 200px;
+	width: 50px;
 	height: 100vh;
-	overflow: hidden;
 }
 nav > .menu{
 	width: 200px;
 	height: 100%;
-	background-color: #000;
+	background-color: #121729;
 	padding-top: 50px;
 	padding-left: 20px;
-	transform: translate(-200px, 0);
+	transform: translate(-150px, 0);
 	transition: transform 0.4s;
 }
 nav > .menu.active{
@@ -56,8 +56,8 @@ nav > .menu-icon{
 	width: 30px;
 	height: 22px;
 	position: absolute;
-	top: 20px;
-	left: 20px;
+	top: 10px;
+	left: 10px;
 	z-index: 1;
 }
 nav > .menu-icon > .menu-bar,
