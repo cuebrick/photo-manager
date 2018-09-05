@@ -14,12 +14,12 @@ export default class Main extends React.Component{
 	render(){
 		return(
 			<div className="container">
-				{
-					this.state.isClicked === false &&
-					<div className="main-splash" onClick={this.clickHandler}>
-						<img src="./.tmp/images/splash-logo.png"/>
-					</div>
-				}
+			{
+				this.state.isClicked === false &&
+				<div className="main-splash" onClick={this.clickHandler}>
+					<img src="./.tmp/images/splash-logo.png"/>
+				</div>
+			}
 			</div>
 		)
 	}

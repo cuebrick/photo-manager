@@ -30,15 +30,25 @@ ul, ol{
 	height: 100vh;
 	overflow: hidden;
 }
-.container{
-	width: 100%;
+nav + .container{
+	float: left;
 	height: 100%;
+	overflow: hidden;
+	width: calc(100% - 50px);
+	transition: width 0.4s;
+}
+nav.active + .container{
+	width: calc(100% - 200px);
 }
 
 nav{
 	float: left;
 	width: 50px;
 	height: 100vh;
+	transition: width 0.4s;
+}
+nav.active{
+	width: 200px;
 }
 nav > .menu{
 	width: 200px;
