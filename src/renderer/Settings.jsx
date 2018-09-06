@@ -5,7 +5,13 @@ export default class Settings extends React.Component{
 	render(){
 		return(
 			<div className="container">
-				Settings page
+				<h1>Settings</h1>
+				<h2>Storage</h2>
+				<h3>Add storage</h3>
+				<div>
+					<input type="text"/>
+					<button>Add</button>
+				</div>
 			</div>
 		)
 	}
