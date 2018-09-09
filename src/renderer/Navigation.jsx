@@ -23,6 +23,8 @@ export default class Navigation extends React.Component{
 				<ul className={"menu" + cssShow}>
 					<li><Link to="/desktop">Desktop</Link></li>
 					<li><Link to="/settings">Settings</Link></li>
+
+					<li><Link to="/add-storage">Add Storage</Link></li>
 				</ul>
 			</nav>
 		)
