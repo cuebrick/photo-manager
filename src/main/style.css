@@ -28,7 +28,6 @@ ul, ol{
 .wrapper{
 	width: 100vw;
 	height: 100vh;
-	overflow: hidden;
 }
 nav + .container{
 	float: left;
@@ -55,7 +54,6 @@ nav > .menu{
 	height: 100%;
 	background-color: #121729;
 	padding-top: 50px;
-	padding-left: 20px;
 	transform: translate(-150px, 0);
 	transition: transform 0.4s;
 }

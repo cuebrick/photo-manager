@@ -1,17 +1,16 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
-import WifiIcon from '@material-ui/icons/Wifi';
-import BluetoothIcon from '@material-ui/icons/Bluetooth';
+import SettingsIcon from '@material-ui/icons/Settings';
+import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 
 export default class Navigation extends React.Component{
@@ -33,31 +32,35 @@ export default class Navigation extends React.Component{
 		return(
 			<nav className={cssShow}>
 				<div className={"menu-icon" + cssShow} onClick={this.menuIconClicked}>
-					<div className="menu-bar"></div>
+					<div className="menu-bar" />
 				</div>
 
 				<div className={"menu" + cssShow}>
-					<ul>
-						<li><Link to="/desktop">Desktop</Link></li>
-						<li><Link to="/settings">Settings</Link></li>
-
-						<li><Link to="/add-storage">Add Storage</Link></li>
-					</ul>
 					<List>
-						<ListItem>
+						<ListItem button component={Link} to="/desktop">
 							<ListItemIcon>
-								<WifiIcon />
+								<CameraAltIcon />
 							</ListItemIcon>
-							<ListItemText primary="Wi-Fi" />
+							<ListItemText primary="Desktop" />
 							<ListItemSecondaryAction>
 								<Switch />
 							</ListItemSecondaryAction>
 						</ListItem>
-						<ListItem>
+						<Divider />
+						<ListItem button component={Link} to="/add-storage">
 							<ListItemIcon>
-								<BluetoothIcon />
+								<AddAPhotoIcon />
 							</ListItemIcon>
-							<ListItemText primary="Bluetooth" />
+							<ListItemText primary="Add Storage" />
+							<ListItemSecondaryAction>
+								<Switch />
+							</ListItemSecondaryAction>
+						</ListItem>
+						<ListItem button component={Link} to="/settings">
+							<ListItemIcon>
+								<SettingsIcon />
+							</ListItemIcon>
+							<ListItemText primary="Settings" />
 							<ListItemSecondaryAction>
 								<Switch />
 							</ListItemSecondaryAction>
