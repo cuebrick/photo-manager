@@ -12,6 +12,7 @@ import Switch from '@material-ui/core/Switch';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = {
 	item: {
@@ -85,6 +86,15 @@ class Navigation extends React.Component{
 								<CameraAltIcon />
 							</ListItemIcon>
 							<ListItemText primary="Desktop" className={this.props.classes.itemText} />
+						</ListItem>
+						<Divider />
+						<ListItem className={this.props.classes.item}>
+							<ListItemIcon className={this.props.classes.icon}>
+								<CameraAltIcon />
+							</ListItemIcon>
+							<Tooltip title="D://Photo" placement="right">
+								<ListItemText primary="Photo" className={this.props.classes.itemText} />
+							</Tooltip>
 							<ListItemSecondaryAction>
 								<Switch />
 							</ListItemSecondaryAction>
@@ -95,18 +105,12 @@ class Navigation extends React.Component{
 								<AddAPhotoIcon />
 							</ListItemIcon>
 							<ListItemText primary="Add Storage" className={this.props.classes.itemText} />
-							<ListItemSecondaryAction>
-								<Switch />
-							</ListItemSecondaryAction>
 						</ListItem>
 						<ListItem button component={Link} to="/settings" className={this.props.classes.item}>
 							<ListItemIcon className={this.props.classes.icon}>
 								<SettingsIcon />
 							</ListItemIcon>
 							<ListItemText primary="Settings" className={this.props.classes.itemText} />
-							<ListItemSecondaryAction>
-								<Switch />
-							</ListItemSecondaryAction>
 						</ListItem>
 					</List>
 				</div>
