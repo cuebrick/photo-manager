@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -14,48 +14,24 @@ import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = {
-	item: {
-		// color: '#999',
-		padding: 10
+const styles = createStyles({
+	root: {
+		colorPrimary: '#fff'
 	},
 	icon: {
 		marginRight: 0
 	},
+	item: {
+		color: '#999',
+		padding: 10,
+		cursor: 'default'
+	},
 	itemText: {
-		// color: '#9db2cc',
+		color: '#9db2cc',
 		padding: '0 10px'
 	}
-};
-
-const theme = createMuiTheme({
-	palette: {
-		type: 'dark',
-	},
-	typography: {
-		// Use the system font instead of the default Roboto font.
-		fontFamily: [
-			'-apple-system',
-			'BlinkMacSystemFont',
-			'"Segoe UI"',
-			'Roboto',
-			'"Helvetica Neue"',
-			'Arial',
-			'sans-serif',
-			'"Apple Color Emoji"',
-			'"Segoe UI Emoji"',
-			'"Segoe UI Symbol"',
-		].join(','),
-		color: '#fff'
-	},
-	overrides: {
-		ListItem: { // Name of the component ⚛️ / style sheet
-			root: { // Name of the rule
-				color: 'white', // Some CSS
-			},
-		},
-	},
 });
+
 
 class Navigation extends React.Component{
 	constructor(props){
@@ -80,7 +56,7 @@ class Navigation extends React.Component{
 				</div>
 
 				<div className={"menu" + cssShow}>
-					<List theme={theme}>
+					<List>
 						<ListItem button component={Link} to="/desktop" className={this.props.classes.item}>
 							<ListItemIcon className={this.props.classes.icon}>
 								<CameraAltIcon />
