@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-import { withStyles, createMuiTheme, createStyles } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -14,7 +14,7 @@ import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const styles = createStyles({
+/*const styles = createStyles({
 	root: {
 		colorPrimary: '#fff'
 	},
@@ -30,10 +30,30 @@ const styles = createStyles({
 		color: '#9db2cc',
 		padding: '0 10px'
 	}
+});*/
+
+const theme = createMuiTheme({
+	overrides: {
+		MuiListItemText: {
+			root: {
+				padding: 0,
+				cursor: "default"
+			}
+		},
+		MuiTypography : {
+			subheading : {
+				color: "inherit"
+			}
+		},
+		MuiListItemIcon: {
+			root: {
+				color: "inherit"
+			},
+		},
+	},
 });
 
-
-class Navigation extends React.Component{
+export default class Navigation extends React.Component{
 	constructor(props){
 		super(props);
 		this.menuIconClicked = this.menuIconClicked.bind(this);
@@ -50,49 +70,49 @@ class Navigation extends React.Component{
 	render(){
 		let cssShow = (this.state.isShow) ? ' active' : ''
 		return(
+			
+			<MuiThemeProvider theme={theme}>
 			<nav className={cssShow}>
 				<div className={"menu-icon" + cssShow} onClick={this.menuIconClicked}>
 					<div className="menu-bar" />
 				</div>
-
 				<div className={"menu" + cssShow}>
 					<List>
-						<ListItem button component={Link} to="/desktop" className={this.props.classes.item}>
-							<ListItemIcon className={this.props.classes.icon}>
+						<ListItem button component={Link} to="/desktop">
+							<ListItemIcon>
 								<CameraAltIcon />
 							</ListItemIcon>
-							<ListItemText primary="Desktop" className={this.props.classes.itemText} />
+							<ListItemText primary="Desktop" />
 						</ListItem>
 						<Divider />
-						<ListItem className={this.props.classes.item}>
-							<ListItemIcon className={this.props.classes.icon}>
+						<ListItem>
+							<ListItemIcon>
 								<CameraAltIcon />
 							</ListItemIcon>
 							<Tooltip title="D://Photo" placement="right">
-								<ListItemText primary="Photo" className={this.props.classes.itemText} />
+								<ListItemText primary="Photo" />
 							</Tooltip>
 							<ListItemSecondaryAction>
 								<Switch />
 							</ListItemSecondaryAction>
 						</ListItem>
 						<Divider />
-						<ListItem button component={Link} to="/add-storage" className={this.props.classes.item}>
-							<ListItemIcon className={this.props.classes.icon}>
+						<ListItem button component={Link} to="/add-storage">
+							<ListItemIcon>
 								<AddAPhotoIcon />
 							</ListItemIcon>
-							<ListItemText primary="Add Storage" className={this.props.classes.itemText} />
+							<ListItemText primary="Add Storage" />
 						</ListItem>
-						<ListItem button component={Link} to="/settings" className={this.props.classes.item}>
-							<ListItemIcon className={this.props.classes.icon}>
+						<ListItem button component={Link} to="/settings">
+							<ListItemIcon>
 								<SettingsIcon />
 							</ListItemIcon>
-							<ListItemText primary="Settings" className={this.props.classes.itemText} />
+							<ListItemText primary="Settings" />
 						</ListItem>
 					</List>
 				</div>
 			</nav>
+			</MuiThemeProvider>
 		)
 	}
 }
-
-export default withStyles(styles)(Navigation);
