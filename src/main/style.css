@@ -10,7 +10,10 @@ body, p, h1, h2, h3, h4, h5, h6, ul, ol{
 	margin: 0;
 	padding: 0;
 }
-
+h1, h2, h3, h4, h5, h6, p{
+	font-weight: 100;
+	line-height: 1em;
+}
 a, a:link{
 	color: #9db2cc;
 	text-decoration: none;
@@ -33,6 +36,7 @@ nav + .container{
 	float: left;
 	height: 100%;
 	overflow: hidden;
+	padding: 20px;
 	width: calc(100% - 50px);
 	transition: width 0.4s;
 }
