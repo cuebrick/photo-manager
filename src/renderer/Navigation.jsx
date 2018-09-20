@@ -16,6 +16,9 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Tooltip from '@material-ui/core/Tooltip';
 
 const theme = createMuiTheme({
+	typography: {
+		fontSize: 12
+	},
 	overrides: {
 		MuiListItem: {
 			gutters: {
