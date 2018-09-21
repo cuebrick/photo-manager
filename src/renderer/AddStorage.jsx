@@ -1,9 +1,13 @@
 import React from 'react';
-import {dialog} from 'electron-remote';
 import fs from "fs";
 
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+
+const {dialog} = require('electron').remote;
 
 export default class AddStorage extends React.Component{
+	
 	constructor(props){
 		super(props);
 		/*fs.readdir('./.tmp/photo/samples/', (err, dir) => {
@@ -13,18 +17,19 @@ export default class AddStorage extends React.Component{
 		});*/
 	}
 	
-	selectDirectory(){
-		// let remote = require('remote');
-		// let dialog = remote.require('electron').dialog;
-		dialog.showOpenDialog({
-			properties: ['openDirectory']
-		})
+	static selectDirectory(){
+		let selectedDirList = dialog.showOpenDialog({
+			properties: ['openDirectory', 'multiSelections']
+		});
+		console.log(selectedDirList);
 	}
 	
 	render(){
 		return(
 			<div className="container">
-				<button onClick={this.selectDirectory}>Add Folder</button>
+				<Button variant="fab" color="primary" aria-label="Add" onClick={AddStorage.selectDirectory}>
+					<AddIcon />
+				</Button>
 			</div>
 		)
 	}
