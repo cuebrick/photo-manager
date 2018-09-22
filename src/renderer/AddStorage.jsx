@@ -22,7 +22,6 @@ export default class AddStorage extends React.Component{
 		super(props);
 		this.selectDirectory = this.selectDirectory.bind(this);
 		this.listUpDirectory = this.listUpDirectory.bind(this);
-		this.getFolderName = this.getFolderName.bind(this);
 		this.state = {
 			directoryList : []
 		}
@@ -51,6 +50,13 @@ export default class AddStorage extends React.Component{
 		return path.split('\\').pop();
 	}
 	
+	removeFolder(path){
+		let list = [...this.state.directoryList];
+		let index = list.indexOf(path);
+		list.splice(index, 1);
+		this.setState({directoryList: list});
+	}
+	
 	render(){
 		return(
 			<div className="container">
@@ -73,7 +79,7 @@ export default class AddStorage extends React.Component{
 										secondary={path}
 									/>
 									<ListItemSecondaryAction>
-										<IconButton aria-label="Delete">
+										<IconButton aria-label="Delete" onClick={() => this.removeFolder(path)}>
 											<DeleteIcon />
 										</IconButton>
 									</ListItemSecondaryAction>
