@@ -39,10 +39,16 @@ export default class AddStorage extends React.Component{
 		shell.openItem(path);
 	}
 	
-	listUpDirectory(dirList){
-		console.log(dirList);
-		if(dirList)
-			this.setState({directoryList: dirList});
+	listUpDirectory(newList){
+		if(newList){
+			let list = [...this.state.directoryList];
+			newList.map((dir) => {
+				if( list.indexOf(dir) === -1 ){
+					list.push(dir);
+				}
+			});
+			this.setState({directoryList: list});
+		}
 		
 		/*fs.readdir('./.tmp/photo/samples/', (err, dir) => {
 			for(let path of dir){
