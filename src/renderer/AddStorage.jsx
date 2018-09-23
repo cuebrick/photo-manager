@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const {dialog} = require('electron').remote;
+const remote = require('electron').remote;
 
 export default class AddStorage extends React.Component{
 	
@@ -28,10 +28,15 @@ export default class AddStorage extends React.Component{
 	}
 	
 	selectDirectory(){
-		let selectedDirList = dialog.showOpenDialog({
+		let selectedDirList = remote.dialog.showOpenDialog({
 			properties: ['openDirectory', 'multiSelections']
 		});
 		this.listUpDirectory(selectedDirList);
+	}
+	
+	openFolder(path){
+		let shell = remote.shell;
+		shell.openItem(path);
 	}
 	
 	listUpDirectory(dirList){
@@ -68,7 +73,7 @@ export default class AddStorage extends React.Component{
 					{
 						this.state.directoryList.map((path, index) => {
 							return (
-								<ListItem key={index}>
+								<ListItem key={index} button onClick={() => this.openFolder(path)}>
 									<ListItemAvatar>
 										<Avatar>
 											<FolderIcon />
