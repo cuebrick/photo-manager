@@ -50,10 +50,21 @@ export default class AddStorage extends React.Component{
 	}
 	
 	handleSaveList(){
-		let list = this.state.savedList.concat(this.state.selectedList);
+		let list = this.deduplicate(this.state.savedList, this.state.selectedList);
+		list = this.state.savedList.concat(list);
+		this.saveList(list);
 		this.displaySavedList(list);
 		this.displaySelectedList([]);
-		this.saveList(list);
+	}
+	
+	deduplicate(base, target){
+		let list = (target) ? [...target] : [...base];
+		list.map((dir, index) => {
+			if( base.indexOf(dir) > -1 ){
+				list.splice(index, 1);
+			}
+		});
+		return list;
 	}
 	
 	displaySavedList(list){
@@ -81,13 +92,9 @@ export default class AddStorage extends React.Component{
 	
 	listUpDirectory(newList){
 		if(newList){
-			let list = [...this.state.selectedList];
-			newList.map((dir) => {
-				if( list.indexOf(dir) === -1 ){
-					list.push(dir);
-				}
-			});
-			this.setState({selectedList: list});
+			let list = this.deduplicate(this.state.selectedList, newList);
+			list = this.state.selectedList.concat(list);
+			this.displaySelectedList(list);
 		}
 		
 		/*fs.readdir('./.tmp/photo/samples/', (err, dir) => {
