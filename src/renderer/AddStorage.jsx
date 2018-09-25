@@ -23,7 +23,8 @@ export default class AddStorage extends React.Component{
 	constructor(props){
 		super(props);
 		this.saveList = this.saveList.bind(this);
-		this.selectDirectory = this.selectDirectory.bind(this);
+		this.handleSaveList = this.handleSaveList.bind(this);
+		this.handleSelectDirectory = this.handleSelectDirectory.bind(this);
 		this.listUpDirectory = this.listUpDirectory.bind(this);
 		this.state = {
 			savedList : [],
@@ -34,25 +35,47 @@ export default class AddStorage extends React.Component{
 	getSavedList(){
 		let list = JSON.parse(localStorage.getItem('directories'));
 		if(list){
-			this.setState({savedList : list})
+			return list;
+		}else{
+			return [];
 		}
 	}
 	
-	saveList(){
-		if(this.state.selectedList.length){
-			let list = this.state.savedList.concat(this.state.selectedList);
+	saveList(list){
+		// console.log('savedList:', this.state.list);
+		// localStorage.clear();
+		if(list){
 			localStorage.setItem('directories', JSON.stringify(list));
 		}
 	}
 	
-	selectDirectory(){
+	handleSaveList(){
+		let list = this.state.savedList.concat(this.state.selectedList);
+		this.displaySavedList(list);
+		this.displaySelectedList([]);
+		this.saveList(list);
+	}
+	
+	displaySavedList(list){
+		this.setState({savedList: list});
+	}
+	
+	displaySelectedList(list){
+		this.setState({selectedList: list});
+	}
+	
+	displaySavedList(list){
+		this.setState({savedList : list})
+	}
+	
+	handleSelectDirectory(){
 		let selectedDirList = remote.dialog.showOpenDialog({
 			properties: ['openDirectory', 'multiSelections']
 		});
 		this.listUpDirectory(selectedDirList);
 	}
 	
-	openFolder(path){
+	handleOpenFolder(path){
 		remote.shell.openItem(path);
 	}
 	
@@ -78,7 +101,18 @@ export default class AddStorage extends React.Component{
 		return path.split('\\').pop();
 	}
 	
-	removeFolder(path){
+	removeSavedFolder(path){
+		let list = [...this.state.savedList];
+		let index = list.indexOf(path);
+		if(index > -1){
+			// TO DO : confirm dialog
+			list.splice(index, 1);
+			this.setState({savedList: list});
+			console.log('removeSavedFolder---', this.state.savedList);
+		}
+	}
+	
+	handleRemoveSelectedFolder(path){
 		let list = [...this.state.selectedList];
 		let index = list.indexOf(path);
 		list.splice(index, 1);
@@ -86,17 +120,22 @@ export default class AddStorage extends React.Component{
 	}
 	
 	componentDidMount(){
-		this.getSavedList();
+		let list = this.getSavedList();
+		this.displaySavedList(list);
+	}
+	
+	componentDidUpdate(){
+	
 	}
 	
 	render(){
 		return(
 			<div className="container">
-				<Button variant="fab" color="primary" aria-label="Save" onClick={this.saveList}>
+				<Button variant="fab" color="primary" aria-label="Save" onClick={this.handleSaveList}>
 					<SaveIcon />
 				</Button>
 				
-				<Button variant="fab" color="primary" aria-label="Add" onClick={this.selectDirectory}>
+				<Button variant="fab" color="primary" aria-label="Add" onClick={this.handleSelectDirectory}>
 					<AddIcon />
 				</Button>
 				
@@ -104,7 +143,7 @@ export default class AddStorage extends React.Component{
 					{
 						this.state.savedList.map((path, index) => {
 							return (
-								<ListItem key={index} button onClick={() => this.openFolder(path)}>
+								<ListItem key={index} button onClick={() => this.handleOpenFolder(path)}>
 									<ListItemAvatar>
 										<Avatar>
 											<FolderIcon />
@@ -115,7 +154,7 @@ export default class AddStorage extends React.Component{
 										secondary={path}
 									/>
 									<ListItemSecondaryAction>
-										<IconButton aria-label="Delete" onClick={() => this.removeFolder(path)}>
+										<IconButton aria-label="Delete" onClick={() => this.removeSavedFolder(path)}>
 											<DeleteIcon />
 										</IconButton>
 									</ListItemSecondaryAction>
@@ -131,7 +170,7 @@ export default class AddStorage extends React.Component{
 					{
 						this.state.selectedList.map((path, index) => {
 							return (
-								<ListItem key={index} button onClick={() => this.openFolder(path)}>
+								<ListItem key={index} button onClick={() => this.handleOpenFolder(path)}>
 									<ListItemAvatar>
 										<Avatar>
 											<FolderIcon />
@@ -142,7 +181,7 @@ export default class AddStorage extends React.Component{
 										secondary={path}
 									/>
 									<ListItemSecondaryAction>
-										<IconButton aria-label="Delete" onClick={() => this.removeFolder(path)}>
+										<IconButton aria-label="Delete" onClick={() => this.handleRemoveSelectedFolder(path)}>
 											<DeleteIcon />
 										</IconButton>
 									</ListItemSecondaryAction>
