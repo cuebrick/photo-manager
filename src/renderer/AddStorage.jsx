@@ -27,6 +27,7 @@ export default class AddStorage extends React.Component{
 		this.handleSelectDirectory = this.handleSelectDirectory.bind(this);
 		this.listUpDirectory = this.listUpDirectory.bind(this);
 		this.state = {
+			disableSave : true,
 			savedList : [],
 			selectedList : []
 		}
@@ -55,16 +56,18 @@ export default class AddStorage extends React.Component{
 		this.saveList(list);
 		this.displaySavedList(list);
 		this.displaySelectedList([]);
+		this.displayDisableSave(true);
 	}
 	
 	deduplicate(base, target){
 		let list = (target) ? [...target] : [...base];
-		list.map((dir, index) => {
-			if( base.indexOf(dir) > -1 ){
-				list.splice(index, 1);
+		let unique = [];
+		list.map((dir) => {
+			if( base.indexOf(dir) === -1 ){
+				unique.push(dir);
 			}
 		});
-		return list;
+		return unique;
 	}
 	
 	displaySavedList(list){
@@ -77,6 +80,10 @@ export default class AddStorage extends React.Component{
 	
 	displaySavedList(list){
 		this.setState({savedList : list})
+	}
+	
+	displayDisableSave(bool){
+		this.setState({disableSave: bool});
 	}
 	
 	handleSelectDirectory(){
@@ -95,6 +102,7 @@ export default class AddStorage extends React.Component{
 			let list = this.deduplicate(this.state.selectedList, newList);
 			list = this.state.selectedList.concat(list);
 			this.displaySelectedList(list);
+			this.displayDisableSave(false);
 		}
 		
 		/*fs.readdir('./.tmp/photo/samples/', (err, dir) => {
@@ -116,6 +124,7 @@ export default class AddStorage extends React.Component{
 			list.splice(index, 1);
 			this.setState({savedList: list});
 			console.log('removeSavedFolder---', this.state.savedList);
+			this.displayDisableSave(false);
 		}
 	}
 	
@@ -138,12 +147,12 @@ export default class AddStorage extends React.Component{
 	render(){
 		return(
 			<div className="container">
-				<Button variant="fab" color="primary" aria-label="Save" onClick={this.handleSaveList}>
-					<SaveIcon />
-				</Button>
-				
 				<Button variant="fab" color="primary" aria-label="Add" onClick={this.handleSelectDirectory}>
 					<AddIcon />
+				</Button>
+				
+				<Button disabled={this.state.disableSave} variant="fab" color="primary" aria-label="Save" onClick={this.handleSaveList}>
+					<SaveIcon />
 				</Button>
 				
 				<List>
