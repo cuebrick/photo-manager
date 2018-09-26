@@ -1,6 +1,7 @@
 import React from 'react';
 import fs from "fs";
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
@@ -17,6 +18,29 @@ import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const remote = require('electron').remote;
+
+const theme = createMuiTheme({
+	overrides: {
+		MuiDivider: {
+			root: {
+				backgroundColor: 'rgba(255,255,255,0.1)'
+			}
+		},
+		MuiTypography: {
+			subheading: {
+				color: "inherit"
+			},
+			colorTextSecondary: {
+				color: "inherit"
+			}
+		},
+		MuiIconButton: {
+			root: {
+				color: "inherit"
+			}
+		}
+	},
+});
 
 export default class AddStorage extends React.Component{
 	
@@ -146,67 +170,69 @@ export default class AddStorage extends React.Component{
 	
 	render(){
 		return(
-			<div className="container">
-				<Button variant="fab" color="primary" aria-label="Add" onClick={this.handleSelectDirectory}>
-					<AddIcon />
-				</Button>
-				
-				<Button disabled={this.state.disableSave} variant="fab" color="primary" aria-label="Save" onClick={this.handleSaveList}>
-					<SaveIcon />
-				</Button>
-				
-				<List>
-					{
-						this.state.savedList.map((path, index) => {
-							return (
-								<ListItem key={index} button onClick={() => this.handleOpenFolder(path)}>
-									<ListItemAvatar>
-										<Avatar>
-											<FolderIcon />
-										</Avatar>
-									</ListItemAvatar>
-									<ListItemText
-										primary={this.getFolderName(path)}
-										secondary={path}
-									/>
-									<ListItemSecondaryAction>
-										<IconButton aria-label="Delete" onClick={() => this.removeSavedFolder(path)}>
-											<DeleteIcon />
-										</IconButton>
-									</ListItemSecondaryAction>
-								</ListItem>
-							)
-						})
-					}
-				</List>
-				
-				<Divider />
-				
-				<List>
-					{
-						this.state.selectedList.map((path, index) => {
-							return (
-								<ListItem key={index} button onClick={() => this.handleOpenFolder(path)}>
-									<ListItemAvatar>
-										<Avatar>
-											<FolderIcon />
-										</Avatar>
-									</ListItemAvatar>
-									<ListItemText
-										primary={this.getFolderName(path)}
-										secondary={path}
-									/>
-									<ListItemSecondaryAction>
-										<IconButton aria-label="Delete" onClick={() => this.handleRemoveSelectedFolder(path)}>
-											<DeleteIcon />
-										</IconButton>
-									</ListItemSecondaryAction>
-								</ListItem>
-							)
-						})
-					}
-				</List>
-			</div>
+			<MuiThemeProvider theme={theme}>
+				<div className="container">
+					<Button variant="fab" color="primary" aria-label="Add" onClick={this.handleSelectDirectory}>
+						<AddIcon />
+					</Button>
+					
+					<Button disabled={this.state.disableSave} variant="fab" color="primary" aria-label="Save" onClick={this.handleSaveList}>
+						<SaveIcon />
+					</Button>
+					
+					<List>
+						{
+							this.state.savedList.map((path, index) => {
+								return (
+									<ListItem key={index} button onClick={() => this.handleOpenFolder(path)}>
+										<ListItemAvatar>
+											<Avatar>
+												<FolderIcon />
+											</Avatar>
+										</ListItemAvatar>
+										<ListItemText
+											primary={this.getFolderName(path)}
+											secondary={path}
+										/>
+										<ListItemSecondaryAction>
+											<IconButton aria-label="Delete" onClick={() => this.removeSavedFolder(path)}>
+												<DeleteIcon />
+											</IconButton>
+										</ListItemSecondaryAction>
+									</ListItem>
+								)
+							})
+						}
+					</List>
+					
+					<Divider />
+					
+					<List>
+						{
+							this.state.selectedList.map((path, index) => {
+								return (
+									<ListItem key={index} button onClick={() => this.handleOpenFolder(path)}>
+										<ListItemAvatar>
+											<Avatar>
+												<FolderIcon />
+											</Avatar>
+										</ListItemAvatar>
+										<ListItemText
+											primary={this.getFolderName(path)}
+											secondary={path}
+										/>
+										<ListItemSecondaryAction>
+											<IconButton aria-label="Delete" onClick={() => this.handleRemoveSelectedFolder(path)}>
+												<DeleteIcon />
+											</IconButton>
+										</ListItemSecondaryAction>
+									</ListItem>
+								)
+							})
+						}
+					</List>
+				</div>
+			</MuiThemeProvider>
 		)
 	}
 }
