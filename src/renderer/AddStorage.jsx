@@ -26,17 +26,23 @@ const theme = createMuiTheme({
 				backgroundColor: 'rgba(255,255,255,0.1)'
 			}
 		},
+		MuiAvatar: {
+			colorDefault: {
+				backgroundColor: 'rgba(92, 167, 255, 0.1)',
+				color: '#3fa4cc'
+			}
+		},
 		MuiTypography: {
 			subheading: {
 				color: "inherit"
 			},
 			colorTextSecondary: {
-				color: "inherit"
+				color: "#777"
 			}
 		},
 		MuiIconButton: {
 			root: {
-				color: "inherit"
+				color: "#ffbc81"
 			}
 		}
 	},
