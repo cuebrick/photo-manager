@@ -174,6 +174,15 @@ export default class AddStorage extends React.Component{
 	
 	}
 	
+	componentWillUnmount(){
+		if(!this.state.disableSave){
+			let result = confirm('Save changes to the Storage before moving?');
+			if(result){
+				this.handleSaveList();
+			}
+		}
+	}
+	
 	render(){
 		return(
 			<MuiThemeProvider theme={theme}>
