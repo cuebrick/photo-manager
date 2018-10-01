@@ -1,34 +1,39 @@
 import React from 'react';
-import {Link} from 'react-dom';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
 
 export default class Settings extends React.Component{
+	constructor(props){
+		super(props);
+		this.handleThemeChange = this.handleThemeChange.bind(this);
+		this.state = {
+			theme : 'dark'
+		}
+	}
+	
+	handleThemeChange(e){
+		console.log('handleThemeChange: ', e.target.value);
+		this.setState({theme: e.target.value})
+	}
+	
 	render(){
 		return(
 			<div className="container">
 				<h1>Settings</h1>
-				<h2>Storage</h2>
-				<h3>Add storage</h3>
-				<div>
-					<TextField
-						id="name"
-						label="Path in this device."
-						margin="normal"
-					/>
-					<Button variant="contained" color="primary">
-						Add folder
-					</Button>
+				<h2>Themes</h2>
+				<div className="setting-contents">
+					<RadioGroup
+						aria-label="Gender"
+						name="gender1"
+						value={this.state.theme}
+						onChange={this.handleThemeChange}
+					>
+						<FormControlLabel value="dark" control={<Radio />} label="Dark Theme" />
+						<FormControlLabel value="light" control={<Radio />} label="Light Theme" />
+					</RadioGroup>
 				</div>
-				<h4>Saved location</h4>
-				<div>
-					<ul>
-						<li>C:\Users\user\Desktop\Works\PhotoManager</li>
-						<li>D:\Photo</li>
-						<li>C:\Users\user\Pictures</li>
-					</ul>
-				</div>
+				<h2>Tags</h2>
 			</div>
 		)
 	}
