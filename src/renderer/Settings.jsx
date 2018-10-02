@@ -2,6 +2,7 @@ import React from 'react';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
+import Chip from '@material-ui/core/Chip';
 
 export default class Settings extends React.Component{
 	constructor(props){
@@ -17,6 +18,10 @@ export default class Settings extends React.Component{
 		this.setState({theme: e.target.value})
 	}
 	
+	handleDeleteChip(e){
+		console.log(e);
+	}
+	
 	render(){
 		return(
 			<div className="container">
@@ -25,7 +30,7 @@ export default class Settings extends React.Component{
 				<div className="setting-contents">
 					<RadioGroup
 						aria-label="Gender"
-						name="gender1"
+						name="themes"
 						value={this.state.theme}
 						onChange={this.handleThemeChange}
 					>
@@ -34,6 +39,11 @@ export default class Settings extends React.Component{
 					</RadioGroup>
 				</div>
 				<h2>Tags</h2>
+				<div className="setting-contents">
+					{/*Create your first tag.*/}
+					<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
+					<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
+				</div>
 			</div>
 		)
 	}
