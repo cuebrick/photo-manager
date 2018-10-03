@@ -57,7 +57,7 @@ export default class AddStorage extends React.Component{
 		this.handleSelectDirectory = this.handleSelectDirectory.bind(this);
 		this.listUpDirectory = this.listUpDirectory.bind(this);
 		this.state = {
-			disableSave : true,
+			isChanged : false,
 			savedList : [],
 			selectedList : []
 		}
@@ -86,7 +86,7 @@ export default class AddStorage extends React.Component{
 		this.saveList(list);
 		this.displaySavedList(list);
 		this.displaySelectedList([]);
-		this.displayDisableSave(true);
+		this.displayChanged(false);
 	}
 	
 	deduplicate(base, target){
@@ -108,12 +108,8 @@ export default class AddStorage extends React.Component{
 		this.setState({selectedList: list});
 	}
 	
-	displaySavedList(list){
-		this.setState({savedList : list})
-	}
-	
-	displayDisableSave(bool){
-		this.setState({disableSave: bool});
+	displayChanged(bool){
+		this.setState({isChanged: bool});
 	}
 	
 	handleSelectDirectory(){
@@ -132,7 +128,7 @@ export default class AddStorage extends React.Component{
 			let list = this.deduplicate(this.state.selectedList, newList);
 			list = this.state.selectedList.concat(list);
 			this.displaySelectedList(list);
-			this.displayDisableSave(false);
+			this.displayChanged(true);
 		}
 		
 		/*fs.readdir('./.tmp/photo/samples/', (err, dir) => {
@@ -146,6 +142,10 @@ export default class AddStorage extends React.Component{
 		return path.split('\\').pop();
 	}
 	
+	/**
+	 * 저장되어 있던 폴더중 삭제함.
+	 * @param path
+	 */
 	removeSavedFolder(path){
 		let list = [...this.state.savedList];
 		let index = list.indexOf(path);
@@ -153,11 +153,15 @@ export default class AddStorage extends React.Component{
 			// TO DO : confirm dialog
 			list.splice(index, 1);
 			this.setState({savedList: list});
+			this.displayChanged(true);
 			console.log('removeSavedFolder---', this.state.savedList);
-			this.displayDisableSave(false);
 		}
 	}
 	
+	/**
+	 * 새로 선택한 폴더 중에서 삭제함.
+	 * @param path
+	 */
 	handleRemoveSelectedFolder(path){
 		let list = [...this.state.selectedList];
 		let index = list.indexOf(path);
@@ -175,7 +179,7 @@ export default class AddStorage extends React.Component{
 	}
 	
 	componentWillUnmount(){
-		if(!this.state.disableSave){
+		if(this.state.isChanged){
 			let result = confirm('Save changes to the Storage before moving?');
 			if(result){
 				this.handleSaveList();
@@ -191,10 +195,9 @@ export default class AddStorage extends React.Component{
 						<AddIcon />
 					</Button>
 					
-					<Button disabled={this.state.disableSave} variant="fab" color="primary" aria-label="Save" onClick={this.handleSaveList}>
+					<Button disabled={!this.state.isChanged} variant="fab" color="primary" aria-label="Save" onClick={this.handleSaveList}>
 						<SaveIcon />
 					</Button>
-					
 					<List>
 						{
 							this.state.savedList.map((path, index) => {
