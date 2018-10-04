@@ -200,26 +200,31 @@ export default class AddStorage extends React.Component{
 					</Button>
 					<List>
 						{
-							this.state.savedList.map((path, index) => {
-								return (
-									<ListItem key={index} button onClick={() => this.handleOpenFolder(path)}>
-										<ListItemAvatar>
-											<Avatar>
-												<FolderIcon />
-											</Avatar>
-										</ListItemAvatar>
-										<ListItemText
-											primary={this.getFolderName(path)}
-											secondary={path}
-										/>
-										<ListItemSecondaryAction>
-											<IconButton aria-label="Delete" onClick={() => this.removeSavedFolder(path)}>
-												<DeleteIcon />
-											</IconButton>
-										</ListItemSecondaryAction>
-									</ListItem>
-								)
-							})
+							( this.state.savedList.length ) ?
+								this.state.savedList.map((path, index) => {
+									return (
+										<ListItem key={index} button onClick={() => this.handleOpenFolder(path)}>
+											<ListItemAvatar>
+												<Avatar>
+													<FolderIcon />
+												</Avatar>
+											</ListItemAvatar>
+											<ListItemText
+												primary={this.getFolderName(path)}
+												secondary={path}
+											/>
+											<ListItemSecondaryAction>
+												<IconButton aria-label="Delete" onClick={() => this.removeSavedFolder(path)}>
+													<DeleteIcon />
+												</IconButton>
+											</ListItemSecondaryAction>
+										</ListItem>
+									)
+								})
+								:
+								<Typography variant="display1" align="center" gutterBottom>
+									새로운 폴더를 등록해 보세요.
+								</Typography>
 						}
 					</List>
 					
