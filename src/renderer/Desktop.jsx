@@ -4,7 +4,13 @@ export default class Desktop extends React.Component{
 	render(){
 		return(
 			<div className="container">
-				<img src="./.tmp/photo/samples/IMG_7478.JPG" width="500"/>
+				<div className="photo-group">
+					<img src="../../sample-photo/pixabay/dawn-3358468_1920.jpg" alt="dawn"/>
+					<img src="../../sample-photo/pixabay/fall-foliage-3705550_1920.jpg" alt="fall foliage"/>
+					<img src="../../sample-photo/pixabay/road-1072823_1920.jpg" alt="road"/>
+					<img src="../../sample-photo/pixabay/terminalia-catappa-2137221_1920.jpg" alt="terminalia catappa"/>
+					<img src="../../sample-photo/pixabay/wheat-3506758_1920.jpg" alt="wheat"/>
+				</div>
 			</div>
 		)
 	}
