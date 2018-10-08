@@ -54,7 +54,6 @@ export default class AddStorage extends React.Component{
 	
 	constructor(props){
 		super(props);
-		this.saveList = this.saveList.bind(this);
 		this.handleSaveList = this.handleSaveList.bind(this);
 		this.handleSelectDirectory = this.handleSelectDirectory.bind(this);
 		this.listUpDirectory = this.listUpDirectory.bind(this);
@@ -65,26 +64,10 @@ export default class AddStorage extends React.Component{
 		}
 	}
 	
-	getSavedList(){
-		let list = files.getDirectoryList();
-		
-		if(list){
-			return list;
-		}else{
-			return [];
-		}
-	}
-	
-	saveList(list){
-		// console.log('savedList:', this.state.list);
-		// localStorage.clear();
-		files.saveDirectoryList(list);
-	}
-	
 	handleSaveList(){
 		let list = this.deduplicate(this.state.savedList, this.state.selectedList);
 		list = this.state.savedList.concat(list);
-		this.saveList(list);
+		files.saveDirectoryList(list);
 		this.displaySavedList(list);
 		this.displaySelectedList([]);
 		this.displayChanged(false);
@@ -171,7 +154,7 @@ export default class AddStorage extends React.Component{
 	}
 	
 	componentDidMount(){
-		let list = this.getSavedList();
+		let list = files.getDirectoryList()
 		this.displaySavedList(list);
 	}
 	

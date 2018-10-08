@@ -2,7 +2,8 @@ import fs from 'fs';
 
 export default class Files {
 	getDirectoryList(){
-		return JSON.parse(localStorage.getItem('directories'));
+		let list = JSON.parse(localStorage.getItem('directories'));
+		return list || [];
 	}
 	saveDirectoryList(list){
 		if(list){
