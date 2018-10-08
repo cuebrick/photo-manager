@@ -1,5 +1,5 @@
 import React from 'react';
-import fs from "fs";
+import Files from '../module/Files.js'
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -48,6 +48,8 @@ const theme = createMuiTheme({
 	},
 });
 
+const files = new Files();
+
 export default class AddStorage extends React.Component{
 	
 	constructor(props){
@@ -64,7 +66,8 @@ export default class AddStorage extends React.Component{
 	}
 	
 	getSavedList(){
-		let list = JSON.parse(localStorage.getItem('directories'));
+		let list = files.getDirectoryList();
+		
 		if(list){
 			return list;
 		}else{
@@ -75,9 +78,7 @@ export default class AddStorage extends React.Component{
 	saveList(list){
 		// console.log('savedList:', this.state.list);
 		// localStorage.clear();
-		if(list){
-			localStorage.setItem('directories', JSON.stringify(list));
-		}
+		files.saveDirectoryList(list);
 	}
 	
 	handleSaveList(){
