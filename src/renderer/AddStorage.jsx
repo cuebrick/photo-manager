@@ -65,65 +65,36 @@ export default class AddStorage extends React.Component{
 		}
 	}
 	
-	handleSaveList(){
-		let list = this.deduplicate(this.state.savedList, this.state.selectedList);
-		// list = this.state.savedList.concat(list);
-		files.saveDirectoryList(list);
-		this.displaySavedList(list);
-		this.displaySelectedList([]);
-		this.displayChanged(false);
-	}
-	
 	deduplicate(base, target){
-		let list = (target) ? [...target] : [...base];
-		let unique = base;
-		/*list.map((itemData) => {
-			if( list.indexOf(itemData.path) === -1 ){
-				unique.push(dir);
-			}
-		});*/
-		return unique;
-	}
-	
-	displaySavedList(list){
-		this.setState({savedList: list});
-	}
-	
-	displaySelectedList(list){
-		this.setState({selectedList: list});
-	}
-	
-	displayChanged(bool){
-		this.setState({isChanged: bool});
-	}
-	
-	handleSelectDirectory(){
-		let selectedDirList = remote.dialog.showOpenDialog({
-			properties: ['openDirectory', 'multiSelections']
+		let list = (target) ? [...target] : [...base]; // Array copy
+		let unique = [];
+		list.map((itemData) => {
+			unique = base.filter((uniqueItemData) => {
+				return !(itemData.path === uniqueItemData.path);
+			});
 		});
-		this.listUpDirectory(selectedDirList);
-	}
-	
-	handleOpenFolder(path){
-		remote.shell.openItem(path);
+		return list.concat(unique);
 	}
 	
 	listUpDirectory(pathList){
 		if(pathList){
 			// let list = this.deduplicate(this.state.selectedList, newList);
 			let list = [];
-			pathList.map((path, index) => {
-				console.log(path);
-				// return;
+			pathList.map((path) => {
 				list.push({
 					path: path,
 					alias: this.getFolderName(path),
 					ext: {jpg: true, png: true, gif: true}
 				})
 			});
-			list = this.state.selectedList.concat(list);
+			let len1 = this.state.selectedList.length;
+			console.log(this.state.selectedList, list);
+			list = this.deduplicate(this.state.selectedList, list);
+			let len2 = list.length;
+			if(len1 < len2){
+				this.displayChanged(true);
+			}
 			this.displaySelectedList(list);
-			this.displayChanged(true);
 		}
 	}
 	
@@ -145,6 +116,37 @@ export default class AddStorage extends React.Component{
 			this.displayChanged(true);
 			console.log('removeSavedFolder---', this.state.savedList);
 		}
+	}
+	
+	displaySavedList(list){
+		this.setState({savedList: list});
+	}
+	
+	displaySelectedList(list){
+		this.setState({selectedList: list});
+	}
+	
+	displayChanged(bool){
+		this.setState({isChanged: bool});
+	}
+	
+	handleSelectDirectory(){
+		let pathList = remote.dialog.showOpenDialog({
+			properties: ['openDirectory', 'multiSelections']
+		});
+		this.listUpDirectory(pathList);
+	}
+	
+	handleSaveList(){
+		let list = this.deduplicate(this.state.savedList, this.state.selectedList);
+		files.saveDirectoryList(list);
+		this.displaySavedList(list);
+		this.displaySelectedList([]);
+		this.displayChanged(false);
+	}
+	
+	handleOpenFolder(path){
+		remote.shell.openItem(path);
 	}
 	
 	/**
