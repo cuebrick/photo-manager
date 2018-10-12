@@ -22,7 +22,7 @@ const theme = createMuiTheme({
 	overrides: {
 		MuiListItem: {
 			gutters: {
-				paddingLeft: 0
+				paddingLeft: 10
 			}
 		},
 		MuiDivider: {
@@ -55,7 +55,7 @@ export default class Navigation extends React.Component{
 		this.menuIconClicked = this.menuIconClicked.bind(this);
 
 		this.state = {
-			isShow : false
+			isShow : true
 		}
 	}
 
