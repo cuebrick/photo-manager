@@ -65,15 +65,14 @@ export default class AddStorage extends React.Component{
 		}
 	}
 	
-	deduplicate(base, target){
-		let list = (target) ? [...target] : [...base]; // Array copy
-		let unique = [];
-		list.map((itemData) => {
-			unique = base.filter((uniqueItemData) => {
-				return !(itemData.path === uniqueItemData.path);
-			});
+	dedup(list){
+		let hashTable = {};
+		return list.filter(function (item) {
+			let key = JSON.stringify(item.path);
+			let match = Boolean(hashTable[key]);
+			
+			return (match ? false : hashTable[key] = true);
 		});
-		return list.concat(unique);
 	}
 	
 	listUpDirectory(pathList){
@@ -88,8 +87,8 @@ export default class AddStorage extends React.Component{
 				})
 			});
 			let len1 = this.state.selectedList.length;
-			console.log(this.state.selectedList, list);
-			list = this.deduplicate(this.state.selectedList, list);
+			list = this.state.selectedList.concat(list);
+			list = this.dedup(list);
 			let len2 = list.length;
 			if(len1 < len2){
 				this.displayChanged(true);
@@ -108,7 +107,10 @@ export default class AddStorage extends React.Component{
 	 */
 	removeSavedFolder(path){
 		let list = [...this.state.savedList];
-		let index = list.indexOf(path);
+		let index = list.findIndex((item) => {
+			return item.path === path;
+		});
+		console.log('index:', index);
 		if(index > -1){
 			// TO DO : confirm dialog
 			list.splice(index, 1);
@@ -138,7 +140,8 @@ export default class AddStorage extends React.Component{
 	}
 	
 	handleSaveList(){
-		let list = this.deduplicate(this.state.savedList, this.state.selectedList);
+		let list = this.state.savedList.concat(this.state.selectedList);
+		list = this.dedup(list);
 		files.saveDirectoryList(list);
 		this.displaySavedList(list);
 		this.displaySelectedList([]);
