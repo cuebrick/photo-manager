@@ -118,3 +118,17 @@ nav > .menu-icon.active > .menu-bar:after{
 	margin-left: -200px;
 	z-index: 9999;
 }
+
+.photo-group{
+	width: 200px;
+	height: 200px;
+	position: relative;
+}
+.photo-group .group-ui h5{
+	text-align: center;
+	font-size: 14px;
+}
+.photo-group > img{
+	width: 100%;
+	position: absolute;
+}
