@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import Files from '../module/Files.js';
 
 import { withStyles, MuiThemeProvider, createMuiTheme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -14,6 +15,8 @@ import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Tooltip from '@material-ui/core/Tooltip';
+
+const files = new Files();
 
 const theme = createMuiTheme({
 	typography: {
@@ -55,7 +58,8 @@ export default class Navigation extends React.Component{
 		this.menuIconClicked = this.menuIconClicked.bind(this);
 
 		this.state = {
-			isShow : true
+			isShow : true,
+			savedList : []
 		}
 	}
 
@@ -63,6 +67,20 @@ export default class Navigation extends React.Component{
 	menuIconClicked(){
 		this.setState({isShow:!this.state.isShow});
 	}
+	
+	getFolderName(path){
+		return path.split('\\').pop();
+	}
+	
+	displaySavedList(list){
+		this.setState({savedList: list});
+	}
+	
+	componentDidMount(){
+		let list = files.getDirectoryList();
+		this.displaySavedList(list);
+	}
+	
 	render(){
 		let cssShow = (this.state.isShow) ? ' active' : ''
 		return(
@@ -81,17 +99,24 @@ export default class Navigation extends React.Component{
 								<ListItemText primary="Desktop" />
 							</ListItem>
 							<Divider />
-							<ListItem>
-								<ListItemIcon>
-									<CameraAltIcon />
-								</ListItemIcon>
-								<Tooltip title="D://Photo" placement="right">
-									<ListItemText primary="Photo" />
-								</Tooltip>
-								<ListItemSecondaryAction>
-									<Switch />
-								</ListItemSecondaryAction>
-							</ListItem>
+							{
+								(this.state.savedList.length) &&
+									this.state.savedList.map((itemData, index) => {
+										return (
+											<ListItem key={index}>
+												<ListItemIcon>
+													<CameraAltIcon />
+												</ListItemIcon>
+												<Tooltip title={itemData.path} placement="right">
+													<ListItemText primary={this.getFolderName(itemData.path)} />
+												</Tooltip>
+												<ListItemSecondaryAction>
+													<Switch />
+												</ListItemSecondaryAction>
+											</ListItem>
+										)
+									})
+							}
 							<Divider />
 							<ListItem button component={Link} to="/add-storage">
 								<ListItemIcon>
