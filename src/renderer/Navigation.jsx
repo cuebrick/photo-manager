@@ -13,6 +13,7 @@ import Switch from '@material-ui/core/Switch';
 import SettingsIcon from '@material-ui/icons/Settings';
 import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import FolderIcon from '@material-ui/icons/Folder';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -105,7 +106,7 @@ export default class Navigation extends React.Component{
 										return (
 											<ListItem key={index}>
 												<ListItemIcon>
-													<CameraAltIcon />
+													<FolderIcon />
 												</ListItemIcon>
 												<Tooltip title={itemData.path} placement="right">
 													<ListItemText primary={this.getFolderName(itemData.path)} />
@@ -124,6 +125,7 @@ export default class Navigation extends React.Component{
 								</ListItemIcon>
 								<ListItemText primary="Add Storage" />
 							</ListItem>
+							<Divider />
 							<ListItem button component={Link} to="/settings">
 								<ListItemIcon>
 									<SettingsIcon />
