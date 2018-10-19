@@ -1,4 +1,5 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 
 export default class Main extends React.Component{
 	constructor(props){
@@ -17,7 +18,7 @@ export default class Main extends React.Component{
 			{
 				this.state.isClicked === false &&
 				<div className="main-splash" onClick={this.clickHandler}>
-					<img src="./.tmp/images/splash-logo.png"/>
+					<Typography variant="display1" align="center">Photo Manager</Typography>
 				</div>
 			}
 			</div>
