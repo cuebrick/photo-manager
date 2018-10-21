@@ -57,7 +57,6 @@ export default class AddStorage extends React.Component{
 		this.handleSaveList = this.handleSaveList.bind(this);
 		this.handleSelectDirectory = this.handleSelectDirectory.bind(this);
 		this.listUpDirectory = this.listUpDirectory.bind(this);
-		this.getFolderName = this.getFolderName.bind(this);
 		this.state = {
 			isChanged : false,
 			savedList : [],
@@ -82,7 +81,7 @@ export default class AddStorage extends React.Component{
 			pathList.map((path) => {
 				list.push({
 					path: path,
-					alias: this.getFolderName(path),
+					alias: files.getFolderName(path),
 					ext: {jpg: true, png: true, gif: true}
 				})
 			});
@@ -95,10 +94,6 @@ export default class AddStorage extends React.Component{
 			}
 			this.displaySelectedList(list);
 		}
-	}
-	
-	getFolderName(path){
-		return path.split('\\').pop();
 	}
 	
 	/**
@@ -204,7 +199,7 @@ export default class AddStorage extends React.Component{
 												</Avatar>
 											</ListItemAvatar>
 											<ListItemText
-												primary={this.getFolderName(itemData.path)}
+												primary={files.getFolderName(itemData.path)}
 												secondary={itemData.path}
 											/>
 											<ListItemSecondaryAction>
@@ -235,7 +230,7 @@ export default class AddStorage extends React.Component{
 											</Avatar>
 										</ListItemAvatar>
 										<ListItemText
-											primary={this.getFolderName(itemData.path)}
+											primary={files.getFolderName(itemData.path)}
 											secondary={itemData.path}
 										/>
 										<ListItemSecondaryAction>

@@ -65,10 +65,6 @@ export default class Navigation extends React.Component{
 		this.setState({isShow:!this.state.isShow});
 	}
 	
-	getFolderName(path){
-		return path.split('\\').pop();
-	}
-	
 	displaySavedList(list){
 		this.setState({savedList: list});
 	}
@@ -105,7 +101,7 @@ export default class Navigation extends React.Component{
 													<FolderIcon />
 												</ListItemIcon>
 												<Tooltip title={itemData.path} placement="right">
-													<ListItemText primary={this.getFolderName(itemData.path)} />
+													<ListItemText primary={files.getFolderName(itemData.path)} />
 												</Tooltip>
 												<ListItemSecondaryAction>
 													<Switch />

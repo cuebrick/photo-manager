@@ -5,6 +5,11 @@ export default class Files {
 		let list = JSON.parse(localStorage.getItem('directories'));
 		return list || [];
 	}
+	
+	getFolderName(path){
+		return path.split('\\').pop();
+	}
+	
 	saveDirectoryList(list){
 		if(list){
 			localStorage.setItem('directories', JSON.stringify(list));
