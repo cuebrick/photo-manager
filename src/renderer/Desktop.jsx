@@ -1,19 +1,54 @@
 import React from 'react';
+import Files from '../module/Files.js';
+
+const files = new Files();
 
 export default class Desktop extends React.Component{
+	constructor(props) {
+		super(props);
+		this.state = {
+			dirList: []
+		}
+	}
+	
+	
+	componentDidMount(){
+		let pathList = files.getDirectoryList();
+		let list = [];
+		// console.log(pathList);
+		pathList.map((item, index) => {
+			list.push({
+				id : index,
+				path: item.path,
+				name: files.getFolderName(item.path),
+				files: files.getFileList(item.path),
+			})
+			console.log(list);
+		});
+		this.setState({dirList: list})
+	}
+	
 	render(){
 		return(
 			<div className="container">
-				<div className="photo-group">
-					<div className="group-ui">
-						<h5>This is group name</h5>
-					</div>
-					<img src="sample-photo/pixabay/dawn-3358468_1920.jpg" alt="dawn"/>
-					<img src="sample-photo/pixabay/fall-foliage-3705550_1920.jpg" alt="fall foliage"/>
-					<img src="sample-photo/pixabay/road-1072823_1920.jpg" alt="road"/>
-					<img src="sample-photo/pixabay/terminalia-catappa-2137221_1920.jpg" alt="terminalia catappa"/>
-					<img src="sample-photo/pixabay/wheat-3506758_1920.jpg" alt="wheat"/>
-				</div>
+				{
+					this.state.dirList.map((data, index) => {
+						return (
+							<div className="photo-group" key={index}>
+								<div className="group-ui">
+									<h5>{data.name}</h5>
+								</div>
+								{
+									data.files.map((fileName, index) => {
+										console.log('---',fileName);
+										return <img src={data.path + '\\' + fileName} key={index} alt="--"/>
+									})
+								}
+							</div>
+						)
+					})
+				}
+				
 			</div>
 		)
 	}
