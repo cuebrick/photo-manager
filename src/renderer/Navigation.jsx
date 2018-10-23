@@ -25,6 +25,18 @@ const theme = createMuiTheme({
 	},
 	overrides: {
 		MuiListItem: {
+			root: {
+				paddingLeft: 10,
+				paddingRight: 10
+			},
+			secondaryAction:{
+				paddingLeft: 10,
+				paddingRight: 0
+			},
+			button:{
+				paddingLeft: 10,
+				paddingRight: 0
+			}
 		},
 		MuiDivider: {
 			root: {
@@ -33,7 +45,9 @@ const theme = createMuiTheme({
 		},
 		MuiListItemText: {
 			root: {
-				cursor: "default"
+				cursor: "default",
+				paddingLeft: 0,
+				paddingRight: 0
 			}
 		},
 		MuiTypography : {
@@ -85,7 +99,7 @@ export default class Navigation extends React.Component{
 					<div className={"menu" + cssShow}>
 						<List>
 							<Divider />
-							<ListItem button component={Link} to="/desktop" disableGutters>
+							<ListItem button component={Link} to="/desktop">
 								<ListItemIcon>
 									<DesktopWindowsIcon />
 								</ListItemIcon>
@@ -96,7 +110,7 @@ export default class Navigation extends React.Component{
 								(this.state.savedList.length) &&
 									this.state.savedList.map((itemData, index) => {
 										return (
-											<ListItem key={index} disableGutters>
+											<ListItem key={index}>
 												<ListItemIcon>
 													<FolderIcon />
 												</ListItemIcon>
@@ -111,14 +125,14 @@ export default class Navigation extends React.Component{
 									})
 							}
 							<Divider />
-							<ListItem button component={Link} to="/add-storage" disableGutters>
+							<ListItem button component={Link} to="/add-storage">
 								<ListItemIcon>
 									<AddAPhotoIcon />
 								</ListItemIcon>
 								<ListItemText primary="Add Storage" />
 							</ListItem>
 							<Divider />
-							<ListItem button component={Link} to="/settings" disableGutters>
+							<ListItem button component={Link} to="/settings">
 								<ListItemIcon>
 									<SettingsIcon />
 								</ListItemIcon>
