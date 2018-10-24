@@ -3,13 +3,16 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import Chip from '@material-ui/core/Chip';
+import Switch from '@material-ui/core/Switch';
 
 export default class Settings extends React.Component{
 	constructor(props){
 		super(props);
 		this.handleThemeChange = this.handleThemeChange.bind(this);
+		this.handleChangeEXIF = this.handleChangeEXIF.bind(this);
 		this.state = {
-			theme : 'dark'
+			theme : 'dark',
+			showEXIF: false
 		}
 	}
 	
@@ -20,6 +23,10 @@ export default class Settings extends React.Component{
 	
 	handleDeleteChip(e){
 		console.log(e);
+	}
+	
+	handleChangeEXIF(key){
+		// this.setState({showEXIF: !this.state.showEXIF})
 	}
 	
 	render(){
@@ -43,6 +50,19 @@ export default class Settings extends React.Component{
 					{/*Create your first tag.*/}
 					<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
 					<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
+				</div>
+				<h2>Display</h2>
+				<div className="setting-contents">
+					<FormControlLabel
+						control={
+							<Switch
+								checked={this.state.showEXIF}
+								onChange={this.handleChangeEXIF('showEXIF')}
+								value="showEXIF"
+							/>
+						}
+						label="Show EXIF information"
+					/>
 				</div>
 			</div>
 		)
