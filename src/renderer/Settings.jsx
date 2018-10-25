@@ -9,7 +9,7 @@ export default class Settings extends React.Component{
 	constructor(props){
 		super(props);
 		this.handleThemeChange = this.handleThemeChange.bind(this);
-		this.handleChangeEXIF = this.handleChangeEXIF.bind(this);
+		this.handleSwitchChange = this.handleSwitchChange.bind(this);
 		this.state = {
 			theme : 'dark',
 			showEXIF: false
@@ -25,8 +25,9 @@ export default class Settings extends React.Component{
 		console.log(e);
 	}
 	
-	handleChangeEXIF(key){
-		// this.setState({showEXIF: !this.state.showEXIF})
+	handleSwitchChange(e){
+		let key =  e.target.value;
+		this.setState({[key]: !this.state[key]})
 	}
 	
 	render(){
@@ -57,7 +58,7 @@ export default class Settings extends React.Component{
 						control={
 							<Switch
 								checked={this.state.showEXIF}
-								onChange={this.handleChangeEXIF('showEXIF')}
+								onChange={this.handleSwitchChange}
 								value="showEXIF"
 							/>
 						}
