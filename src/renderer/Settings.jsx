@@ -1,9 +1,21 @@
 import React from 'react';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import Chip from '@material-ui/core/Chip';
 import Switch from '@material-ui/core/Switch';
+
+const theme = createMuiTheme({
+	overrides: {
+		MuiTypography: {
+			body1: {
+				color: "inherit"
+			}
+		}
+	},
+});
 
 export default class Settings extends React.Component{
 	constructor(props){
@@ -32,40 +44,42 @@ export default class Settings extends React.Component{
 	
 	render(){
 		return(
-			<div className="container">
-				<h1>Settings</h1>
-				<h2>Themes</h2>
-				<div className="setting-contents">
-					<RadioGroup
-						aria-label="Gender"
-						name="themes"
-						value={this.state.theme}
-						onChange={this.handleThemeChange}
-					>
-						<FormControlLabel value="dark" control={<Radio />} label="Dark Theme" />
-						<FormControlLabel value="light" control={<Radio />} label="Light Theme" />
-					</RadioGroup>
+			<MuiThemeProvider theme={theme}>
+				<div className="container">
+					<h1>Settings</h1>
+					<h2>Themes</h2>
+					<div className="setting-contents">
+						<RadioGroup
+							aria-label="Gender"
+							name="themes"
+							value={this.state.theme}
+							onChange={this.handleThemeChange}
+						>
+							<FormControlLabel value="dark" control={<Radio />} label="Dark Theme" />
+							<FormControlLabel value="light" control={<Radio />} label="Light Theme" />
+						</RadioGroup>
+					</div>
+					<h2>Tags</h2>
+					<div className="setting-contents">
+						{/*Create your first tag.*/}
+						<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
+						<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
+					</div>
+					<h2>Display</h2>
+					<div className="setting-contents">
+						<FormControlLabel
+							control={
+								<Switch
+									checked={this.state.showEXIF}
+									onChange={this.handleSwitchChange}
+									value="showEXIF"
+								/>
+							}
+							label="Show EXIF information"
+						/>
+					</div>
 				</div>
-				<h2>Tags</h2>
-				<div className="setting-contents">
-					{/*Create your first tag.*/}
-					<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
-					<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
-				</div>
-				<h2>Display</h2>
-				<div className="setting-contents">
-					<FormControlLabel
-						control={
-							<Switch
-								checked={this.state.showEXIF}
-								onChange={this.handleSwitchChange}
-								value="showEXIF"
-							/>
-						}
-						label="Show EXIF information"
-					/>
-				</div>
-			</div>
+			</MuiThemeProvider>
 		)
 	}
 }
