@@ -24,7 +24,8 @@ export default class Settings extends React.Component{
 		this.handleSwitchChange = this.handleSwitchChange.bind(this);
 		this.state = {
 			theme : 'dark',
-			showEXIF: false
+			showEXIF: false,
+			showGroupTitle: true
 		}
 	}
 	
@@ -76,6 +77,16 @@ export default class Settings extends React.Component{
 								/>
 							}
 							label="Show EXIF information"
+						/>
+						<FormControlLabel
+							control={
+								<Switch
+									checked={this.state.showGroupTitle}
+									onChange={this.handleSwitchChange}
+									value="showGroupTitle"
+								/>
+							}
+							label="Show title of photo group"
 						/>
 					</div>
 				</div>
