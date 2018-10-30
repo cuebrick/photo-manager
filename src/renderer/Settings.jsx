@@ -2,6 +2,7 @@ import React from 'react';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import Chip from '@material-ui/core/Chip';
@@ -56,8 +57,16 @@ export default class Settings extends React.Component{
 							value={this.state.theme}
 							onChange={this.handleThemeChange}
 						>
-							<FormControlLabel value="dark" control={<Radio />} label="Dark Theme" />
-							<FormControlLabel value="light" control={<Radio />} label="Light Theme" />
+							<FormControlLabel
+								value="dark"
+								control={<Radio />}
+								label="Dark Theme"
+							/>
+							<FormControlLabel
+								value="light"
+								control={<Radio />}
+								label="Light Theme"
+							/>
 						</RadioGroup>
 					</div>
 					<h2>Tags</h2>
@@ -68,26 +77,28 @@ export default class Settings extends React.Component{
 					</div>
 					<h2>Display</h2>
 					<div className="setting-contents">
-						<FormControlLabel
-							control={
-								<Switch
-									checked={this.state.showEXIF}
-									onChange={this.handleSwitchChange}
-									value="showEXIF"
-								/>
-							}
-							label="Show EXIF information"
-						/>
-						<FormControlLabel
-							control={
-								<Switch
-									checked={this.state.showGroupTitle}
-									onChange={this.handleSwitchChange}
-									value="showGroupTitle"
-								/>
-							}
-							label="Show title of photo group"
-						/>
+						<FormGroup>
+							<FormControlLabel
+								control={
+									<Switch
+										checked={this.state.showEXIF}
+										onChange={this.handleSwitchChange}
+										value="showEXIF"
+									/>
+								}
+								label="Show EXIF information"
+							/>
+							<FormControlLabel
+								control={
+									<Switch
+										checked={this.state.showGroupTitle}
+										onChange={this.handleSwitchChange}
+										value="showGroupTitle"
+									/>
+								}
+								label="Show title of photo group"
+							/>
+						</FormGroup>
 					</div>
 				</div>
 			</MuiThemeProvider>
