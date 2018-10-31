@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -48,8 +49,8 @@ export default class Settings extends React.Component{
 		return(
 			<MuiThemeProvider theme={theme}>
 				<div className="container">
-					<h1>Settings</h1>
-					<h2>Themes</h2>
+					<Typography variant="title">Settings</Typography>
+					<Typography variant="subheading">Themes</Typography>
 					<div className="setting-contents">
 						<RadioGroup
 							aria-label="Gender"
@@ -69,13 +70,13 @@ export default class Settings extends React.Component{
 							/>
 						</RadioGroup>
 					</div>
-					<h2>Tags</h2>
+					<Typography variant="subheading">Tags</Typography>
 					<div className="setting-contents">
 						{/*Create your first tag.*/}
 						<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
 						<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
 					</div>
-					<h2>Display</h2>
+					<Typography variant="subheading">Display</Typography>
 					<div className="setting-contents">
 						<FormGroup>
 							<FormControlLabel
