@@ -52,8 +52,8 @@ export default class Settings extends React.Component{
 					<Typography variant="title">Settings</Typography>
 					<Typography variant="subheading">Themes</Typography>
 					<div className="setting-contents">
-						<RadioGroup
-							aria-label="Gender"
+						<RadioGroup row
+							aria-label="theme"
 							name="themes"
 							value={this.state.theme}
 							onChange={this.handleThemeChange}
