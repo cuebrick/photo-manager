@@ -14,6 +14,12 @@ const theme = createMuiTheme({
 		MuiTypography: {
 			body1: {
 				color: "inherit"
+			},
+			title: {
+				color: "inherit"
+			},
+			subheading: {
+				color: "inherit"
 			}
 		}
 	},
