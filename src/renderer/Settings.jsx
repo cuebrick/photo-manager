@@ -33,7 +33,8 @@ export default class Settings extends React.Component{
 		this.state = {
 			theme : 'dark',
 			showEXIF: false,
-			showGroupTitle: true
+			showGroupTitle: true,
+			showTag: true
 		}
 	}
 	
@@ -104,6 +105,16 @@ export default class Settings extends React.Component{
 									/>
 								}
 								label="Show title of photo group"
+							/>
+							<FormControlLabel
+								control={
+									<Switch
+										checked={this.state.showTag}
+										onChange={this.handleSwitchChange}
+										value="showTag"
+									/>
+								}
+								label="Show tag on photo view"
 							/>
 						</FormGroup>
 					</div>
