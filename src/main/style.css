@@ -132,3 +132,15 @@ nav > .menu-icon.active > .menu-bar:after{
 	width: 100%;
 	position: absolute;
 }
+
+
+
+
+/* settings view */
+.setting-contents{
+	margin-bottom: 30px;
+}
+
+.container h3{
+	margin: 10px 0 0 0;
+}
