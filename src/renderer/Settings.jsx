@@ -2,6 +2,7 @@ import React from 'react';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -21,7 +22,12 @@ const theme = createMuiTheme({
 			subheading: {
 				color: "inherit"
 			}
-		}
+		},
+		MuiDivider: {
+			root: {
+				backgroundColor: 'rgba(255,255,255,0.1)'
+			}
+		},
 	},
 });
 
@@ -57,6 +63,9 @@ export default class Settings extends React.Component{
 			<MuiThemeProvider theme={theme}>
 				<div className="container">
 					<Typography variant="title">Settings</Typography>
+					
+					<Divider />
+					
 					<Typography variant="subheading">Themes</Typography>
 					<div className="setting-contents">
 						<RadioGroup row
@@ -77,12 +86,18 @@ export default class Settings extends React.Component{
 							/>
 						</RadioGroup>
 					</div>
+					
+					<Divider />
+					
 					<Typography variant="subheading">Tags</Typography>
 					<div className="setting-contents">
 						{/*Create your first tag.*/}
 						<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
 						<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
 					</div>
+					
+					<Divider />
+					
 					<Typography variant="subheading">Display</Typography>
 					<div className="setting-contents">
 						<FormGroup>
