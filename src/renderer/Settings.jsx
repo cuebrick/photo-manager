@@ -40,7 +40,8 @@ export default class Settings extends React.Component{
 			theme : 'dark',
 			showEXIF: false,
 			showGroupTitle: true,
-			showTag: true
+			showTag: true,
+			autoCache: true
 		}
 	}
 	
@@ -130,6 +131,24 @@ export default class Settings extends React.Component{
 									/>
 								}
 								label="Show tag on photo view"
+							/>
+						</FormGroup>
+					</div>
+					
+					<Divider />
+					
+					<Typography variant="subheading">Image Cache</Typography>
+					<div className="setting-contents">
+						<FormGroup>
+							<FormControlLabel
+								control={
+									<Switch
+										checked={this.state.autoCache}
+										onChange={this.handleSwitchChange}
+										value="autoCache"
+									/>
+								}
+								label="Auto Cache"
 							/>
 						</FormGroup>
 					</div>
