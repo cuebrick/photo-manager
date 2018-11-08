@@ -9,6 +9,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import Chip from '@material-ui/core/Chip';
 import Switch from '@material-ui/core/Switch';
+import Button from '@material-ui/core/Button';
+import Cached from '@material-ui/icons/Cached';
 
 const theme = createMuiTheme({
 	overrides: {
@@ -139,7 +141,7 @@ export default class Settings extends React.Component{
 					
 					<Typography variant="subheading">Image Cache</Typography>
 					<div className="setting-contents">
-						<FormGroup>
+						<div>
 							<FormControlLabel
 								control={
 									<Switch
@@ -150,7 +152,11 @@ export default class Settings extends React.Component{
 								}
 								label="Auto Cache"
 							/>
-						</FormGroup>
+							<Button variant="contained" size="small">
+								<Cached />
+								Rebuild Cache Now.
+							</Button>
+						</div>
 					</div>
 				</div>
 			</MuiThemeProvider>
