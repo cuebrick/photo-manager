@@ -10,7 +10,7 @@ import Radio from '@material-ui/core/Radio';
 import Chip from '@material-ui/core/Chip';
 import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
-import Cached from '@material-ui/icons/Cached';
+import CachedIcon from '@material-ui/icons/Cached';
 
 const theme = createMuiTheme({
 	overrides: {
@@ -141,23 +141,23 @@ export default class Settings extends React.Component{
 					
 					<Typography variant="subheading">Image Cache</Typography>
 					<div className="setting-contents">
-						<div>
-							<FormControlLabel
-								control={
-									<Switch
-										checked={this.state.autoCache}
-										onChange={this.handleSwitchChange}
-										value="autoCache"
-									/>
-								}
-								label="Auto Cache"
-							/>
-							<Button variant="contained" size="small">
-								<Cached />
-								Rebuild Cache Now.
-							</Button>
-						</div>
+						<FormControlLabel
+							control={
+								<Switch
+									checked={this.state.autoCache}
+									onChange={this.handleSwitchChange}
+									value="autoCache"
+								/>
+							}
+							label="Auto Cache"
+						/>
+						<Button variant="contained" size="small">
+							<CachedIcon />
+							Rebuild Cache
+						</Button>
 					</div>
+					
+					<Divider />
 				</div>
 			</MuiThemeProvider>
 		)
