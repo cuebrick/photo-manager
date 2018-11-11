@@ -12,7 +12,7 @@ import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 import SettingsIcon from '@material-ui/icons/Settings';
 import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
-import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import LabelIcon from '@material-ui/icons/Label';
 import FolderIcon from '@material-ui/icons/Folder';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -130,6 +130,13 @@ export default class Navigation extends React.Component{
 									<AddAPhotoIcon />
 								</ListItemIcon>
 								<ListItemText primary="Add Storage" />
+							</ListItem>
+							<Divider />
+							<ListItem button component={Link} to="/tag">
+								<ListItemIcon>
+									<LabelIcon />
+								</ListItemIcon>
+								<ListItemText primary="Tags" />
 							</ListItem>
 							<Divider />
 							<ListItem button component={Link} to="/settings">

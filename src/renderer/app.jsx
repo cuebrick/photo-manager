@@ -8,6 +8,7 @@ import Desktop from "./Desktop";
 import NotFound from "./NotFound";
 import Navigation from "./Navigation";
 import AddStorage from "./AddStorage";
+import Tag from "./Tag";
 
 
 const routing = (
@@ -16,6 +17,7 @@ const routing = (
 			<Navigation />
 			<Switch>
 				<Route path="/settings" component={Settings} />
+				<Route path="/tag" component={Tag} />
 				<Route path="/desktop" component={Desktop} />
 				<Route path="/add-storage" component={AddStorage} />
 				<Route component={Main} />
