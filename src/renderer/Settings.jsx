@@ -7,7 +7,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
-import Chip from '@material-ui/core/Chip';
 import Switch from '@material-ui/core/Switch';
 import Button from '@material-ui/core/Button';
 import CachedIcon from '@material-ui/icons/Cached';
@@ -88,15 +87,6 @@ export default class Settings extends React.Component{
 								label="Light Theme"
 							/>
 						</RadioGroup>
-					</div>
-					
-					<Divider />
-					
-					<Typography variant="subheading">Tags</Typography>
-					<div className="setting-contents">
-						{/*Create your first tag.*/}
-						<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
-						<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
 					</div>
 					
 					<Divider />
