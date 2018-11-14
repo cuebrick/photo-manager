@@ -1,6 +1,7 @@
 import React from 'react';
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography/Typography";
+import TextField from '@material-ui/core/TextField';
 import Divider from "@material-ui/core/Divider/Divider";
 import Chip from "@material-ui/core/Chip/Chip";
 
@@ -31,6 +32,18 @@ export default class Tag extends React.Component{
 			<MuiThemeProvider theme={theme}>
 				<div className="container">
 					<Typography variant="title">Settings</Typography>
+					
+					<Divider />
+					<Typography variant="subheading">Add Tag</Typography>
+					<div className="setting-contents">
+						
+						<TextField
+							id="outlined-bare"
+							placeholder="Make your tag"
+							margin="normal"
+							variant="outlined"
+						/>
+					</div>
 					
 					<Divider />
 					
