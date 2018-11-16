@@ -36,7 +36,7 @@ export default class Tag extends React.Component{
 		return(
 			<MuiThemeProvider theme={theme}>
 				<div className="container">
-					<Typography variant="title">Settings</Typography>
+					<Typography variant="title">Tags</Typography>
 					
 					<Divider />
 					<Typography variant="subheading">Add Tag</Typography>
@@ -52,7 +52,7 @@ export default class Tag extends React.Component{
 					
 					<Divider />
 					
-					<Typography variant="subheading">Tags list</Typography>
+					<Typography variant="subheading">Tags List</Typography>
 					<div className="setting-contents">
 						{/*Create your first tag.*/}
 						<Chip label="Sample Tag Name" color="secondary" onDelete={this.handleDeleteChip} variant="outlined" />
