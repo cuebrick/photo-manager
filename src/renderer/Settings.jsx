@@ -51,10 +51,6 @@ export default class Settings extends React.Component{
 		this.setState({theme: e.target.value})
 	}
 	
-	handleDeleteChip(e){
-		console.log(e);
-	}
-	
 	handleSwitchChange(e){
 		let key =  e.target.value;
 		this.setState({[key]: !this.state[key]})

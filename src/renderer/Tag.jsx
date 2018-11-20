@@ -32,6 +32,11 @@ const theme = createMuiTheme({
 });
 
 export default class Tag extends React.Component{
+	
+	handleDeleteChip(e){
+		console.log(e);
+	}
+	
 	render(){
 		return(
 			<MuiThemeProvider theme={theme}>
