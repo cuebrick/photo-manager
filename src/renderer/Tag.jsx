@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import TextField from '@material-ui/core/TextField';
 import Divider from "@material-ui/core/Divider/Divider";
 import Chip from "@material-ui/core/Chip/Chip";
+import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme({
 	overrides: {
@@ -53,6 +54,7 @@ export default class Tag extends React.Component{
 							margin="normal"
 							variant="outlined"
 						/>
+						<Button variant="contained">Add</Button>
 					</div>
 					
 					<Divider />
