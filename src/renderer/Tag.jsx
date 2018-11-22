@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Divider from "@material-ui/core/Divider/Divider";
 import Chip from "@material-ui/core/Chip/Chip";
 import Button from '@material-ui/core/Button';
+import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 
 const theme = createMuiTheme({
 	overrides: {
@@ -54,7 +55,10 @@ export default class Tag extends React.Component{
 							margin="normal"
 							variant="outlined"
 						/>
-						<Button variant="contained">Add</Button>
+						<Button variant="contained" size="small">
+							<LabelOutlinedIcon />
+							Add
+						</Button>
 					</div>
 					
 					<Divider />
