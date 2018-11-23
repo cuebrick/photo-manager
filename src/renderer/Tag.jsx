@@ -39,6 +39,10 @@ export default class Tag extends React.Component{
 		console.log(e);
 	}
 	
+	handleInputChanged(e){
+		console.log(e);
+	}
+	
 	render(){
 		return(
 			<MuiThemeProvider theme={theme}>
@@ -54,6 +58,8 @@ export default class Tag extends React.Component{
 							placeholder="Make your tag"
 							margin="normal"
 							variant="outlined"
+							autoFocus={true}
+							onChange={this.handleInputChanged}
 						/>
 						<Button variant="contained" size="small">
 							<LabelOutlinedIcon />
