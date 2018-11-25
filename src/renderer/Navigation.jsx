@@ -97,6 +97,7 @@ export default class Navigation extends React.Component{
 						<div className="menu-bar" />
 					</div>
 					<div className={"menu" + cssShow}>
+						<h1>Photo Manager</h1>
 						<List>
 							<Divider />
 							<ListItem button component={Link} to="/desktop">
