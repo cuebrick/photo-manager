@@ -38,6 +38,12 @@ const theme = createMuiTheme({
 				paddingRight: 0
 			}
 		},
+		MuiListItemSecondaryAction: {
+			root: {
+				width: 55,
+				right: 0
+			}
+		},
 		MuiDivider: {
 			root: {
 				backgroundColor: 'rgba(255,255,255,0.1)'
